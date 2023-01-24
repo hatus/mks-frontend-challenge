@@ -1,11 +1,18 @@
 import './global.css';
 import styles from './App.module.css';
 
+import styled from 'styled-components';
+
+export const Content = styled.div`
+  display: flex;
+  background-color: #333;
+`;
+
 function App() {
   return (
-    <div className={styles.wrapper}>
+    <Content>
       <h1>Ola mundo</h1>
-    </div>
+    </Content>
   );
 }
 
