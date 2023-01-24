@@ -1,9 +1,24 @@
-import './global.css';
-import { api } from './services/api';
+import { BrowserRouter } from 'react-router-dom';
+import { ThemeProvider } from 'styled-components';
+import { Provider } from 'react-redux';
+
+import { Router } from './Router';
+import { GlobalStyle } from './styles/global';
+import { defaultTheme } from './styles/themes';
+import { store } from './store';
 
 function App() {
-  api;
-  return <h1>Ola mundo</h1>;
+  return (
+    <ThemeProvider theme={defaultTheme}>
+      <Provider store={store}>
+        <BrowserRouter>
+          <Router />
+        </BrowserRouter>
+      </Provider>
+
+      <GlobalStyle />
+    </ThemeProvider>
+  );
 }
 
 export default App;

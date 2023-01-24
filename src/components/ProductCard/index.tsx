@@ -1,35 +1,62 @@
-import { Image, Container } from './styles';
+import { ShoppingBagOpen } from 'phosphor-react';
+import { Product } from '../../pages/Products/interfaces/Product';
+import { useAppDispatch } from '../../store';
+import { addToCart } from '../../store/features/cartSlice';
+
+import {
+  Container,
+  Image,
+  Description,
+  Info,
+  Name,
+  Price,
+  Footer,
+  Body,
+} from './styles';
 
 interface ProductCardProps {
-  brand: string;
-  description: string;
-  name: string;
-  price: string;
-  photo: string;
+  data: Product;
 }
 
-export function ProductCard({
-  brand,
-  description,
-  name,
-  photo,
-  price,
-}: ProductCardProps) {
-  const priced = Number(price).toLocaleString('pt-BR', {
+export function ProductCard({ data }: ProductCardProps) {
+  const { id, brand, description, name, price, photo } = data;
+
+  const dispatch = useAppDispatch();
+
+  const priceInBrl = Number(price).toLocaleString('pt-BR', {
     style: 'currency',
-    currency: 'R$',
+    currency: 'BRL',
   });
+
   return (
     <Container>
-      <Image src={photo} alt={description} />
+      <Body>
+        <Image src={photo} alt={description} />
 
-      <InfoWrapper>
-        <Name>{name}</Name>
+        <Info>
+          <Name>
+            {brand} {name}
+          </Name>
 
-        <Price>{priced}</Price>
-      </InfoWrapper>
+          <Price>{priceInBrl}</Price>
+        </Info>
 
-      <Description>{description}</Description>
+        <Description>{description}</Description>
+      </Body>
+
+      <Footer
+        onClick={() =>
+          dispatch(
+            addToCart({
+              product: data,
+              qty: 1,
+            }),
+          )
+        }
+      >
+        <ShoppingBagOpen size={20} color="#fff" />
+        <span>COMPRAR</span>
+      </Footer>
     </Container>
   );
 }
