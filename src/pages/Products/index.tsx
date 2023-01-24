@@ -3,16 +3,14 @@ import { api } from '../../services/api';
 import { Container } from './styles';
 
 interface Product {
-  name: string;
-
   id: number;
-  name;
-  brand;
-  description;
-  photo;
-  price;
-  createdAt;
-  updatedAt;
+  name: string;
+  brand: string;
+  description: string;
+  photo: string;
+  price: string;
+  createdAt: Date;
+  updatedAt: Date;
 }
 
 export function Products() {
