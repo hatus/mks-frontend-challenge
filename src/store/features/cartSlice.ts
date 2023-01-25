@@ -11,42 +11,38 @@ export interface CartItem {
 
 interface CartState {
   items: CartItem[];
+  isOpen: boolean;
 }
+
 const initialState: CartState = {
   items: [],
+  isOpen: false,
 };
 
-export const CartSlice = createSlice({
+export const cartSlice = createSlice({
   name: 'cart',
   initialState,
   reducers: {
     addToCart: (state, action: PayloadAction<CartItem>) => {
-      state.items.push(action.payload);
+      state.items = [...state.items, action.payload];
+    },
+    removeFromCart: (state, action: PayloadAction<CartItem>) => {
+      state.items = state.items.filter(
+        item => item.product.id === action.payload.product.id,
+      );
+    },
+    openCart: state => {
+      state.isOpen = true;
+    },
+    closeCart: state => {
+      state.isOpen = false;
+    },
+    toggleCart: state => {
+      state.isOpen = !state.isOpen;
     },
   },
 });
 
-export default CartSlice.reducer;
-export const { addToCart } = CartSlice.actions;
-
-const items = (state: RootState) => state.cart.items;
-
-export const totalItemQtySelector = createSelector([items], items => {
-  console.log('custom selector runned');
-
-  return items.reduce(
-    (total: number, curr: CartItem) => (total += curr.qty),
-    0,
-  );
-});
-
-export const totalQtyLimitSelector = createSelector(
-  [items, (items, limit: number) => limit],
-  (items, limit) => {
-    const total = items.reduce(
-      (total: number, curr: CartItem) => (total += curr.qty),
-      0,
-    );
-    return total > limit;
-  },
-);
+export default cartSlice.reducer;
+export const { addToCart, closeCart, openCart, removeFromCart, toggleCart } =
+  cartSlice.actions;
