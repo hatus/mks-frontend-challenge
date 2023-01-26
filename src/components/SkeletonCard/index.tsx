@@ -1,4 +1,5 @@
 import Skeleton from 'react-loading-skeleton';
+import 'react-loading-skeleton/dist/skeleton.css';
 
 import { Container } from './styles';
 
@@ -7,8 +8,8 @@ export function SkeletonCard() {
     <Container>
       {Array(8)
         .fill(0, 0, 8)
-        .map((item, index) => (
-          <Skeleton height={280} width={218} borderRadius={8} key={index} />
+        .map((_, i) => (
+          <Skeleton key={i} width={218} height={280} borderRadius={8} />
         ))}
     </Container>
   );

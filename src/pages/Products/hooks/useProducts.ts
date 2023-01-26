@@ -13,9 +13,11 @@ const useProducts = () => {
         const { data } = await api.get(
           '/products?page=1&rows=8&sortBy=name&orderBy=ASC',
         );
-        setLoading(false);
         setProducts(data.products);
-      } catch (error) {}
+      } catch (error) {
+      } finally {
+        setLoading(false);
+      }
     };
 
     fetchProducts();

@@ -15,7 +15,11 @@ export const Container = styled.div`
 `;
 
 export const Body = styled.div`
-  padding: 14px 14px 0px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  padding: 14px 14px 12px;
   height: 100%;
 `;
 
@@ -29,10 +33,11 @@ export const Info = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
+  gap: 4px;
 `;
 
 export const Name = styled.div`
-  font-size: 16px;
+  font-size: 15px;
   font-weight: 400;
 `;
 

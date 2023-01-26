@@ -1,6 +1,6 @@
-import { PayloadAction } from '@reduxjs/toolkit';
-import { createSlice } from '@reduxjs/toolkit';
+import { createSelector, PayloadAction, createSlice } from '@reduxjs/toolkit';
 
+import { RootState } from '..';
 import { Product } from '../../pages/Products/interfaces/Product';
 
 export interface CartItem {
@@ -11,13 +11,11 @@ export interface CartItem {
 interface CartState {
   items: CartItem[];
   isOpen: boolean;
-  totalValue: number;
 }
 
 const initialState: CartState = {
   items: [],
   isOpen: false,
-  totalValue: 0,
 };
 
 export const cartSlice = createSlice({
@@ -31,11 +29,6 @@ export const cartSlice = createSlice({
 
       if (!itemAlreadyExists) {
         state.items = [...state.items, action.payload];
-
-        state.totalValue = state.items.reduce(
-          (acc, item) => acc + Number(item.product.price) * item.qty,
-          0,
-        );
       }
 
       state.isOpen = true;
@@ -44,11 +37,26 @@ export const cartSlice = createSlice({
       state.items = state.items.filter(
         item => item.product.id !== action.payload.product.id,
       );
-
-      state.totalValue = state.items.reduce(
-        (acc, item) => acc + Number(item.product.price) * item.qty,
-        0,
+    },
+    incrementItemAmount: (state, action: PayloadAction<CartItem>) => {
+      const foundedItemToIncrement = state.items.findIndex(
+        item => item.product.id === action.payload.product.id,
       );
+
+      if (foundedItemToIncrement >= 0) {
+        state.items[foundedItemToIncrement].qty += 1;
+      }
+    },
+    decrementItemAmount: (state, action: PayloadAction<CartItem>) => {
+      const foundedItemToDecrement = state.items.findIndex(
+        item => item.product.id === action.payload.product.id,
+      );
+
+      if (foundedItemToDecrement >= 0) {
+        state.items[foundedItemToDecrement].qty > 1
+          ? (state.items[foundedItemToDecrement].qty -= 1)
+          : (state.items[foundedItemToDecrement].qty = 1);
+      }
     },
     openCart: state => {
       state.isOpen = true;
@@ -63,5 +71,22 @@ export const cartSlice = createSlice({
 });
 
 export default cartSlice.reducer;
-export const { addItem, closeCart, openCart, removeItem, toggleCart } =
-  cartSlice.actions;
+export const {
+  addItem,
+  closeCart,
+  openCart,
+  removeItem,
+  toggleCart,
+  incrementItemAmount,
+  decrementItemAmount,
+} = cartSlice.actions;
+
+const items = (state: RootState) => state.cart.items;
+
+export const totalValueFromCartSelector = createSelector([items], items => {
+  return items.reduce(
+    (total: number, item: CartItem) =>
+      (total += item.qty * Number(item.product.price)),
+    0,
+  );
+});

@@ -12,6 +12,8 @@ export const Container = styled.div`
 
   &:hover {
     cursor: pointer;
+    background-color: #e5e5e5;
+    transition: 0.2s background-color;
   }
 `;
 

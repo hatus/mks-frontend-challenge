@@ -1,7 +1,6 @@
 import { ShoppingCart } from 'phosphor-react';
 
-import { useAppSelector } from '../../store';
-
+import { useAppSelector } from '../../../../store';
 import { Container, NumberProductInCart } from './styles';
 
 export function CartQuantityBox({ ...rest }) {

@@ -1,7 +1,11 @@
 import { useAppDispatch, useAppSelector } from '../../store';
-import { closeCart } from '../../store/features/cartSlice';
+import {
+  closeCart,
+  totalValueFromCartSelector,
+} from '../../store/features/cartSlice';
+import { convertPriceToBrlCurrency } from '../../utils/convert-price-to-brl-currency';
 import { CloseButton } from './components/CloseButton';
-import { ItemCard } from './components/ItemCard';
+import { CartItemCard } from './components/CartItemCard';
 
 import {
   Body,
@@ -24,12 +28,9 @@ export function Cart({ isOpen }: CartProps) {
 
   const cartItems = useAppSelector(state => state.cart.items);
 
-  const cartTotalValue = useAppSelector(
-    state => state.cart.totalValue,
-  ).toLocaleString('pt-BR', {
-    style: 'currency',
-    currency: 'BRL',
-  });
+  const cartTotalValue = convertPriceToBrlCurrency(
+    useAppSelector(totalValueFromCartSelector).toString(),
+  );
 
   const handleCloseCart = () => dispatch(closeCart());
 
@@ -43,7 +44,7 @@ export function Cart({ isOpen }: CartProps) {
 
       <Body>
         {cartItems.map(item => (
-          <ItemCard key={item.product.id} item={item} />
+          <CartItemCard key={item.product.id} item={item} />
         ))}
       </Body>
 

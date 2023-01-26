@@ -5,12 +5,13 @@ interface ContainerProps {
 }
 
 export const Container = styled.div<ContainerProps>`
-  display: ${({ isOpen }) => (isOpen ? 'flex' : 'none')};
+  display: flex;
   flex-direction: column;
   position: absolute;
   right: 0;
   z-index: 1;
   overflow: auto;
+  visibility: ${({ isOpen }) => (isOpen ? 'visible' : 'hidden')};
 
   height: 100%;
   width: 486px;
@@ -27,6 +28,7 @@ export const Header = styled.div`
 `;
 
 export const TitleCart = styled.p`
+  width: 180px;
   font-size: 27px;
   font-weight: 700;
   color: #fff;

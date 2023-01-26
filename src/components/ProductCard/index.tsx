@@ -2,6 +2,7 @@ import { ShoppingBagOpen } from 'phosphor-react';
 import { Product } from '../../pages/Products/interfaces/Product';
 import { useAppDispatch, useAppSelector } from '../../store';
 import { addItem } from '../../store/features/cartSlice';
+import { convertPriceToBrlCurrency } from '../../utils/convert-price-to-brl-currency';
 
 import {
   Container,
@@ -23,10 +24,7 @@ export function ProductCard({ data }: ProductCardProps) {
 
   const dispatch = useAppDispatch();
 
-  const priceInBrl = Number(price).toLocaleString('pt-BR', {
-    style: 'currency',
-    currency: 'BRL',
-  });
+  const priceInBrl = convertPriceToBrlCurrency(price);
 
   const handleAddItemToCart = () =>
     dispatch(
