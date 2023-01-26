@@ -1,5 +1,25 @@
 import { Container } from './styles';
 
-export function CloseButton({ ...rest }) {
-  return <Container {...rest}>X</Container>;
+interface CloseButtonProps {
+  size: number;
+  absolute?: boolean;
+  onClick: () => void;
+}
+
+export function CloseButton({
+  size,
+  absolute,
+  onClick,
+  ...rest
+}: CloseButtonProps) {
+  return (
+    <Container
+      size={size}
+      absolute={absolute ?? false}
+      onClick={onClick}
+      {...rest}
+    >
+      X
+    </Container>
+  );
 }

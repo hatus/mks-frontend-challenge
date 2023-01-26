@@ -1,8 +1,7 @@
-import { createSelector, PayloadAction } from '@reduxjs/toolkit';
+import { PayloadAction } from '@reduxjs/toolkit';
 import { createSlice } from '@reduxjs/toolkit';
 
 import { Product } from '../../pages/Products/interfaces/Product';
-import { RootState } from '../index';
 
 export interface CartItem {
   product: Product;
@@ -12,23 +11,43 @@ export interface CartItem {
 interface CartState {
   items: CartItem[];
   isOpen: boolean;
+  totalValue: number;
 }
 
 const initialState: CartState = {
   items: [],
   isOpen: false,
+  totalValue: 0,
 };
 
 export const cartSlice = createSlice({
   name: 'cart',
   initialState,
   reducers: {
-    addToCart: (state, action: PayloadAction<CartItem>) => {
-      state.items = [...state.items, action.payload];
-    },
-    removeFromCart: (state, action: PayloadAction<CartItem>) => {
-      state.items = state.items.filter(
+    addItem: (state, action: PayloadAction<CartItem>) => {
+      const itemAlreadyExists = state.items.some(
         item => item.product.id === action.payload.product.id,
+      );
+
+      if (!itemAlreadyExists) {
+        state.items = [...state.items, action.payload];
+
+        state.totalValue = state.items.reduce(
+          (acc, item) => acc + Number(item.product.price) * item.qty,
+          0,
+        );
+      }
+
+      state.isOpen = true;
+    },
+    removeItem: (state, action: PayloadAction<CartItem>) => {
+      state.items = state.items.filter(
+        item => item.product.id !== action.payload.product.id,
+      );
+
+      state.totalValue = state.items.reduce(
+        (acc, item) => acc + Number(item.product.price) * item.qty,
+        0,
       );
     },
     openCart: state => {
@@ -44,5 +63,5 @@ export const cartSlice = createSlice({
 });
 
 export default cartSlice.reducer;
-export const { addToCart, closeCart, openCart, removeFromCart, toggleCart } =
+export const { addItem, closeCart, openCart, removeItem, toggleCart } =
   cartSlice.actions;

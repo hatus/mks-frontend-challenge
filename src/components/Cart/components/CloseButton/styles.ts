@@ -1,17 +1,29 @@
 import styled from 'styled-components';
 
-export const Container = styled.div`
+interface ContainerProps {
+  size: number;
+  absolute: boolean;
+}
+
+export const Container = styled.div<ContainerProps>`
+  ${({ absolute }) =>
+    absolute &&
+    `
+      position: absolute;
+      top: -4px;
+      right: -4px;
+  `}
   display: flex;
   justify-content: center;
   align-items: center;
 
-  width: 38px;
-  height: 38px;
+  width: ${({ size }) => size}px;
+  height: ${({ size }) => size}px;
   border-radius: 50%;
 
   color: #fff;
   background-color: #000;
-  font-size: 28px;
+  font-size: ${({ size }) => size * 0.73}px;
   font-weight: 400;
 
   &:hover {

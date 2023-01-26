@@ -1,7 +1,7 @@
 import { ShoppingBagOpen } from 'phosphor-react';
 import { Product } from '../../pages/Products/interfaces/Product';
 import { useAppDispatch, useAppSelector } from '../../store';
-import { addToCart, openCart } from '../../store/features/cartSlice';
+import { addItem } from '../../store/features/cartSlice';
 
 import {
   Container,
@@ -19,7 +19,7 @@ interface ProductCardProps {
 }
 
 export function ProductCard({ data }: ProductCardProps) {
-  const { id, brand, description, name, price, photo } = data;
+  const { brand, description, name, price, photo } = data;
 
   const dispatch = useAppDispatch();
 
@@ -28,16 +28,13 @@ export function ProductCard({ data }: ProductCardProps) {
     currency: 'BRL',
   });
 
-  const handleBuyProduct = () => {
+  const handleAddItemToCart = () =>
     dispatch(
-      addToCart({
+      addItem({
         product: data,
         qty: 1,
       }),
     );
-
-    dispatch(openCart());
-  };
 
   return (
     <Container>
@@ -55,7 +52,7 @@ export function ProductCard({ data }: ProductCardProps) {
         <Description>{description}</Description>
       </Body>
 
-      <Footer onClick={handleBuyProduct}>
+      <Footer onClick={handleAddItemToCart}>
         <ShoppingBagOpen size={20} color="#fff" />
 
         <span>COMPRAR</span>
