@@ -6,13 +6,6 @@ interface ContainerProps {
 }
 
 export const Container = styled.div<ContainerProps>`
-  ${({ absolute }) =>
-    absolute &&
-    `
-      position: absolute;
-      top: -4px;
-      right: -4px;
-  `}
   display: flex;
   justify-content: center;
   align-items: center;
@@ -23,7 +16,7 @@ export const Container = styled.div<ContainerProps>`
 
   color: #fff;
   background-color: #000;
-  font-size: ${({ size }) => size * 0.73}px;
+  font-size: ${({ size }) => size * 0.6}px;
   font-weight: 400;
 
   &:hover {
@@ -31,4 +24,12 @@ export const Container = styled.div<ContainerProps>`
     background-color: #191919;
     transition: background-color 0.2s;
   }
+
+  ${({ absolute }) =>
+    absolute &&
+    `
+      position: absolute;
+      top: -4px;
+      right: -4px;
+  `}
 `;
