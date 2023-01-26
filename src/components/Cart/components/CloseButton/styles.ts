@@ -9,6 +9,7 @@ export const Container = styled.div<ContainerProps>`
   display: flex;
   justify-content: center;
   align-items: center;
+  user-select: none;
 
   width: ${({ size }) => size}px;
   height: ${({ size }) => size}px;

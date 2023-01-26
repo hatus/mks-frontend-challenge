@@ -26,6 +26,7 @@ export const SelectorButton = styled.p`
   display: flex;
   justify-content: center;
   align-items: center;
+  user-select: none;
 
   padding: 4px 8px;
 

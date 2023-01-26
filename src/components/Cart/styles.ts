@@ -64,6 +64,7 @@ export const FinishButton = styled.div`
   background-color: #000;
   text-align: center;
   cursor: pointer;
+  user-select: none;
 
   &:hover {
     background-color: #191919;

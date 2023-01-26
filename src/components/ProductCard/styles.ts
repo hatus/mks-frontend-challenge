@@ -65,6 +65,7 @@ export const Footer = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  user-select: none;
 
   color: #fff;
   background-color: #0f52ba;

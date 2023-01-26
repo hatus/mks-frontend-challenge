@@ -4,11 +4,14 @@ export const Container = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+
   border-radius: 8px;
   width: 90px;
   height: 45px;
-  background-color: #fff;
   gap: 16px;
+
+  background-color: #fff;
+  user-select: none;
 
   &:hover {
     cursor: pointer;
