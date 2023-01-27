@@ -10,7 +10,7 @@ export const Container = styled.div`
 export const Label = styled.p`
   font-size: 10px;
   font-weight: 400;
-  color: #000;
+  color: ${({ theme }) => theme.colors['base-black-900']};
 `;
 
 export const SelectorGroup = styled.div`
@@ -42,7 +42,7 @@ export const SelectorQty = styled.p`
 
   font-size: 8px;
   padding: 0 7px;
-  color: #000;
+  color: ${({ theme }) => theme.colors['base-black-900']};
 
   width: 16px;
   height: 12px;

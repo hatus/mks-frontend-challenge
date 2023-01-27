@@ -64,9 +64,6 @@ export const cartSlice = createSlice({
     closeCart: state => {
       state.isOpen = false;
     },
-    toggleCart: state => {
-      state.isOpen = !state.isOpen;
-    },
   },
 });
 
@@ -76,7 +73,6 @@ export const {
   closeCart,
   openCart,
   removeItem,
-  toggleCart,
   incrementItemAmount,
   decrementItemAmount,
 } = cartSlice.actions;

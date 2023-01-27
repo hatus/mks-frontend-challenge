@@ -25,9 +25,7 @@ interface CartProps {
 
 export function Cart({ isOpen }: CartProps) {
   const dispatch = useAppDispatch();
-
   const cartItems = useAppSelector(state => state.cart.items);
-
   const cartTotalValue = convertPriceToBrlCurrency(
     useAppSelector(totalValueFromCartSelector).toString(),
   );

@@ -9,7 +9,7 @@ export const Container = styled.div`
   height: 285px;
   border-radius: 8px;
   box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.135216);
-  background-color: #fff;
+  background-color: ${({ theme }) => theme.colors['base-white']};
 
   overflow: hidden;
 `;
@@ -25,7 +25,6 @@ export const Body = styled.div`
 
 export const Image = styled.img`
   object-fit: contain;
-  width: 100%;
   height: 111px;
 `;
 
@@ -45,9 +44,9 @@ export const Price = styled.p`
   padding: 4px 7px;
   border-radius: 5px;
 
-  background-color: #373737;
+  background-color: ${({ theme }) => theme.colors['base-grey-700']};
 
-  color: #fff;
+  color: ${({ theme }) => theme.colors['base-white']};
   font-size: 15px;
   font-weight: 700;
 `;
@@ -58,7 +57,7 @@ export const Description = styled.div`
   font-weight: 300;
   font-size: 10px;
 
-  color: #2c2c2c;
+  color: ${({ theme }) => theme.colors['base-grey-900']};
 `;
 
 export const Footer = styled.div`
@@ -67,8 +66,8 @@ export const Footer = styled.div`
   align-items: center;
   user-select: none;
 
-  color: #fff;
-  background-color: #0f52ba;
+  color: ${({ theme }) => theme.colors['base-white']};
+  background-color: ${({ theme }) => theme.colors['base-background-900']};
 
   font-weight: 600;
   font-size: 14px;
@@ -78,6 +77,6 @@ export const Footer = styled.div`
   &:hover {
     cursor: pointer;
     transition: color 0.2s, background-color 0.2s;
-    background-color: #2663c0;
+    background-color: ${({ theme }) => theme.colors['base-background-700']};
   }
 `;

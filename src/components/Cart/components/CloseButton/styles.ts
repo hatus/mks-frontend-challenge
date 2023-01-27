@@ -15,14 +15,14 @@ export const Container = styled.div<ContainerProps>`
   height: ${({ size }) => size}px;
   border-radius: 50%;
 
-  color: #fff;
-  background-color: #000;
+  color: ${({ theme }) => theme.colors['base-white']};
+  background-color: ${({ theme }) => theme.colors['base-black-900']};
   font-size: ${({ size }) => size * 0.6}px;
   font-weight: 400;
 
   &:hover {
     cursor: pointer;
-    background-color: #191919;
+    background-color: ${({ theme }) => theme.colors['base-black-700']};
     transition: background-color 0.2s;
   }
 

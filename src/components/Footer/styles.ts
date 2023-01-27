@@ -5,7 +5,7 @@ export const Container = styled.div`
   font-size: 12px;
   font-weight: 400;
 
-  background-color: #eee;
+  background-color: ${({ theme }) => theme.colors['base-grey-100']};
 
   position: absolute;
   bottom: 0;

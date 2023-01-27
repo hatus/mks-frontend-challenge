@@ -9,13 +9,13 @@ export const Container = styled.div`
   width: 100%;
   padding: 28px 65px;
 
-  background-color: #0f52ba;
+  background-color: ${({ theme }) => theme.colors['base-background-900']};
 `;
 
 export const Logo = styled.div`
   display: flex;
   align-items: center;
-  color: #fff;
+  color: ${({ theme }) => theme.colors['base-white']};
   gap: 6px;
 `;
 

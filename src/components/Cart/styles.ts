@@ -7,16 +7,26 @@ interface ContainerProps {
 export const Container = styled.div<ContainerProps>`
   display: flex;
   flex-direction: column;
-  position: absolute;
-  right: 0;
+  position: fixed;
+  top: 0;
   z-index: 1;
   overflow: auto;
-  visibility: ${({ isOpen }) => (isOpen ? 'visible' : 'hidden')};
+
+  ${({ isOpen }) =>
+    (isOpen &&
+      `
+      right: 0;
+      transition: .4s right;
+      `) ||
+    `
+      right: -486px;
+      transition: .4s right;
+    `}
 
   height: 100%;
   width: 486px;
 
-  background-color: #0f52ba;
+  background-color: ${({ theme }) => theme.colors['base-background-900']};
   box-shadow: -5px 0px 6px rgba(0, 0, 0, 0.13);
 `;
 
@@ -31,7 +41,7 @@ export const TitleCart = styled.p`
   width: 180px;
   font-size: 27px;
   font-weight: 700;
-  color: #fff;
+  color: ${({ theme }) => theme.colors['base-white']}; ;
 `;
 
 export const Body = styled.div`
@@ -43,7 +53,7 @@ export const Body = styled.div`
 `;
 
 export const Footer = styled.div`
-  color: #fff;
+  color: ${({ theme }) => theme.colors['base-white']};
   font-weight: 700;
   font-size: 28px;
 `;
@@ -61,13 +71,13 @@ export const TotalValue = styled.p``;
 export const FinishButton = styled.div`
   height: 97px;
   padding: 39px 0;
-  background-color: #000;
+  background-color: ${({ theme }) => theme.colors['base-black-900']};
   text-align: center;
   cursor: pointer;
   user-select: none;
 
   &:hover {
-    background-color: #191919;
+    background-color: ${({ theme }) => theme.colors['base-black-700']};
     transition: 0.1s background-color;
   }
 `;

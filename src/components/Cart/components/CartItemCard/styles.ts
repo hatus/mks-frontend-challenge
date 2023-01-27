@@ -11,7 +11,7 @@ export const Container = styled.div`
   border-radius: 8px;
   padding: 0 15px 0 23px;
 
-  background-color: #fff;
+  background-color: ${({ theme }) => theme.colors['base-white']};
 `;
 
 export const Image = styled.img`
@@ -23,12 +23,12 @@ export const ProductName = styled.p`
   width: 113px;
   font-weight: 400;
   font-size: 13px;
-  color: #2c2c2c;
+  color: ${({ theme }) => theme.colors['base-grey-900']};
 `;
 
 export const ProductPrice = styled.div`
   width: 65px;
   font-weight: 700;
   font-size: 14px;
-  color: #000;
+  color: ${({ theme }) => theme.colors['base-black-900']}; ;
 `;

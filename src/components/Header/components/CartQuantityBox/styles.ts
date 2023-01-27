@@ -10,18 +10,18 @@ export const Container = styled.div`
   height: 45px;
   gap: 16px;
 
-  background-color: #fff;
+  background-color: ${({ theme }) => theme.colors['base-white']};
   user-select: none;
 
   &:hover {
     cursor: pointer;
-    background-color: #e5e5e5;
+    background-color: ${({ theme }) => theme.colors['base-white-light']};
     transition: 0.2s background-color;
   }
 `;
 
 export const NumberProductInCart = styled.div`
-  color: #000;
+  color: ${({ theme }) => theme.colors['base-black-900']};
   font-weight: 700;
   font-size: 18px;
 `;
