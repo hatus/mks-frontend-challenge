@@ -22,7 +22,7 @@ export const cartSlice = createSlice({
   name: 'cart',
   initialState,
   reducers: {
-    addItem: (state, action: PayloadAction<CartItem>) => {
+    addItemToCart: (state, action: PayloadAction<CartItem>) => {
       const itemAlreadyExists = state.items.some(
         item => item.product.id === action.payload.product.id,
       );
@@ -33,7 +33,7 @@ export const cartSlice = createSlice({
 
       state.isOpen = true;
     },
-    removeItem: (state, action: PayloadAction<CartItem>) => {
+    removeItemFromCart: (state, action: PayloadAction<CartItem>) => {
       state.items = state.items.filter(
         item => item.product.id !== action.payload.product.id,
       );
@@ -69,10 +69,10 @@ export const cartSlice = createSlice({
 
 export default cartSlice.reducer;
 export const {
-  addItem,
+  addItemToCart,
   closeCart,
   openCart,
-  removeItem,
+  removeItemFromCart,
   incrementItemAmount,
   decrementItemAmount,
 } = cartSlice.actions;

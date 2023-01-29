@@ -13,7 +13,7 @@ export function Products() {
       {!loading && (
         <ProductCardList>
           {products.map(product => (
-            <ProductCard key={product.id} data={product} />
+            <ProductCard key={product.id} product={product} />
           ))}
         </ProductCardList>
       )}

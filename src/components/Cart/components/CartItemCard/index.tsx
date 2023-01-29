@@ -1,5 +1,8 @@
 import { useAppDispatch } from '../../../../store';
-import { CartItem, removeItem } from '../../../../store/features/cartSlice';
+import {
+  CartItem,
+  removeItemFromCart,
+} from '../../../../store/features/cartSlice';
 import { CloseButton } from '../CloseButton';
 import { Container, Image, ProductName, ProductPrice } from './styles';
 import { convertPriceToBrlCurrency } from '../../../../utils/convert-price-to-brl-currency';
@@ -12,13 +15,13 @@ interface ItemCardProps {
 export function CartItemCard({ item }: ItemCardProps) {
   const dispatch = useAppDispatch();
 
-  const handleRemoveItem = () => dispatch(removeItem(item));
+  const handleRemoveItemFromCart = () => dispatch(removeItemFromCart(item));
 
   const totalValueByItem = Number(item.product.price) * item.qty + '';
 
   return (
     <Container>
-      <CloseButton size={18} onClick={handleRemoveItem} absolute />
+      <CloseButton size={18} onClick={handleRemoveItemFromCart} absolute />
 
       <Image src={item.product.photo} alt={item.product.description} />
 

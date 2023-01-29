@@ -1,7 +1,7 @@
 import { ShoppingBagOpen } from 'phosphor-react';
 import { Product } from '../../pages/Products/interfaces/Product';
-import { useAppDispatch, useAppSelector } from '../../store';
-import { addItem } from '../../store/features/cartSlice';
+import { useAppDispatch } from '../../store';
+import { addItemToCart } from '../../store/features/cartSlice';
 import { convertPriceToBrlCurrency } from '../../utils/convert-price-to-brl-currency';
 
 import {
@@ -16,11 +16,11 @@ import {
 } from './styles';
 
 interface ProductCardProps {
-  data: Product;
+  product: Product;
 }
 
-export function ProductCard({ data }: ProductCardProps) {
-  const { brand, description, name, price, photo } = data;
+export function ProductCard({ product }: ProductCardProps) {
+  const { brand, description, name, price, photo } = product;
 
   const dispatch = useAppDispatch();
 
@@ -28,8 +28,8 @@ export function ProductCard({ data }: ProductCardProps) {
 
   const handleAddItemToCart = () =>
     dispatch(
-      addItem({
-        product: data,
+      addItemToCart({
+        product,
         qty: 1,
       }),
     );
