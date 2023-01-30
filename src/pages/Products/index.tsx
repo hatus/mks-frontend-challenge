@@ -4,11 +4,16 @@ import { SkeletonCard } from '../../components/SkeletonCard';
 import { Container, ProductCardList } from './styles';
 
 export function Products() {
-  const { products, loading } = useProducts();
+  const {
+    products,
+    stateOfFetch: { isError, isLoading },
+  } = useProducts();
 
   return (
     <Container>
-      {loading ? (
+      {isError && <p>Erro ao carregar produtos.</p>}
+
+      {isLoading ? (
         <SkeletonCard />
       ) : (
         <ProductCardList>
