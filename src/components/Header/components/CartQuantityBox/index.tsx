@@ -10,7 +10,7 @@ export function CartQuantityBox({ ...rest }) {
     <Container {...rest}>
       <ShoppingCart size={20} color="#000" weight="bold" />
 
-      <NumberProductInCart>{items.length}</NumberProductInCart>
+      <NumberProductInCart role="cart-qty">{items.length}</NumberProductInCart>
     </Container>
   );
 }

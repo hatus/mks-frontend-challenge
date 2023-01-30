@@ -27,11 +27,21 @@ export function SelectQtyItem({ item }: SelectQtyItemProps) {
       <Label>Qtd:</Label>
 
       <SelectorGroup>
-        <SelectorButton onClick={handleDecreaseQtyItem}>-</SelectorButton>
+        <SelectorButton
+          onClick={handleDecreaseQtyItem}
+          role="button-decrease-qty"
+        >
+          -
+        </SelectorButton>
 
-        <SelectorQty>{item.qty}</SelectorQty>
+        <SelectorQty role="cart-item-amount">{item.qty}</SelectorQty>
 
-        <SelectorButton onClick={handleIncreaseQtyItem}>+</SelectorButton>
+        <SelectorButton
+          onClick={handleIncreaseQtyItem}
+          role="button-increase-qty"
+        >
+          +
+        </SelectorButton>
       </SelectorGroup>
     </Container>
   );

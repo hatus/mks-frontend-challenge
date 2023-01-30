@@ -40,7 +40,7 @@ export function ProductCard({ product }: ProductCardProps) {
         <Image src={photo} alt={description} />
 
         <Info>
-          <Name>
+          <Name role="product-name">
             {brand} {name}
           </Name>
 
@@ -50,7 +50,7 @@ export function ProductCard({ product }: ProductCardProps) {
         <Description>{description}</Description>
       </Body>
 
-      <Footer onClick={handleAddItemToCart}>
+      <Footer onClick={handleAddItemToCart} role="button-buy">
         <ShoppingBagOpen size={20} color="#fff" />
 
         <span>COMPRAR</span>

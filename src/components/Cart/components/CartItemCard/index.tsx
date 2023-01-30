@@ -4,9 +4,9 @@ import {
   removeItemFromCart,
 } from '../../../../store/features/cartSlice';
 import { CloseButton } from '../CloseButton';
-import { Container, Image, ProductName, ProductPrice } from './styles';
-import { convertPriceToBrlCurrency } from '../../../../utils/convert-price-to-brl-currency';
 import { SelectQtyItem } from '../SelectQtyItem';
+import { convertPriceToBrlCurrency } from '../../../../utils/convert-price-to-brl-currency';
+import { Container, Image, ProductName, ProductPrice } from './styles';
 
 interface ItemCardProps {
   item: CartItem;
@@ -17,10 +17,10 @@ export function CartItemCard({ item }: ItemCardProps) {
 
   const handleRemoveItemFromCart = () => dispatch(removeItemFromCart(item));
 
-  const totalValueByItem = Number(item.product.price) * item.qty + '';
+  const totalValueByCartItem = Number(item.product.price) * item.qty + '';
 
   return (
-    <Container>
+    <Container role="cart-item">
       <CloseButton size={18} onClick={handleRemoveItemFromCart} absolute />
 
       <Image src={item.product.photo} alt={item.product.description} />
@@ -31,7 +31,9 @@ export function CartItemCard({ item }: ItemCardProps) {
 
       <SelectQtyItem item={item} />
 
-      <ProductPrice>{convertPriceToBrlCurrency(totalValueByItem)}</ProductPrice>
+      <ProductPrice>
+        {convertPriceToBrlCurrency(totalValueByCartItem)}
+      </ProductPrice>
     </Container>
   );
 }

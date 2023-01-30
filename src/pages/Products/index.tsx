@@ -8,9 +8,9 @@ export function Products() {
 
   return (
     <Container>
-      {loading && <SkeletonCard />}
-
-      {!loading && (
+      {loading ? (
+        <SkeletonCard />
+      ) : (
         <ProductCardList>
           {products.map(product => (
             <ProductCard key={product.id} product={product} />

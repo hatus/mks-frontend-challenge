@@ -1,3 +1,4 @@
+import { AriaRole } from 'react';
 import { Container } from './styles';
 
 interface CloseButtonProps {
@@ -17,6 +18,7 @@ export function CloseButton({
       size={size}
       absolute={absolute ?? false}
       onClick={onClick}
+      role={absolute ? 'button-remove-item-cart' : 'button-close-cart'}
       {...rest}
     >
       X
